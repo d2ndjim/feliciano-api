@@ -1,4 +1,5 @@
-def create
+class SessionsController < ApplicationController
+  def create
     user = User.find_by_email(session_params[:email])
     if user&.authenticate(session_params[:password])
       token = issue_token(user)
@@ -21,3 +22,4 @@ def create
   def session_params
     params.permit(:email, :password)
   end
+end
