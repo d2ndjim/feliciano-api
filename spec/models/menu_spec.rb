@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Menu, type: :model do
   describe 'Menu model' do
     @user = User.create(first_name: 'Test', last_name: 'Test', email: 'test@user.com', password: 'lakaka12')
-    subject { Menu.new(name: 'Menu1', category: vegetarian, price: 100, image: 'https://testimage', description: 'First Hall', admin_id: @user) }
+    subject { Menu.new(name: 'Menu1', category: "vegetarian", price: 100, image: 'https://testimage', description: 'First Hall', admin_id: @user) }
     before { subject.save }
 
     it 'should check if the name is not blank' do
@@ -12,12 +12,12 @@ RSpec.describe Menu, type: :model do
     end
 
     it 'should check if the capacity is not blank' do
-      subject.capacity = nil
+      subject.category = nil
       expect(subject).to_not be_valid
     end
 
     it 'should checks if the cost is not empty' do
-      subject.cost = nil
+      subject.price = nil
       expect(subject).to_not be_valid
     end
 
