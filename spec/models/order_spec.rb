@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Order, type: :model do
   @user = User.create(first_name: 'Eid', last_name: 'Hachem', role: 'admin', email: 'new@test.com', password: '123456')
-  @menu = Menu.create(name: 'Main menu', category: "vegetarian", price: 50.5, image: 'https://testimage', description: 'Small',
+  @menu = Menu.create(name: 'Main menu', category: 'vegetarian', price: 50.5, image: 'https://testimage', description: 'Small',
                       admin_id: @user)
   subject { Order.new(user_id: @user, menu_id: @menu) }
   before { subject.save }

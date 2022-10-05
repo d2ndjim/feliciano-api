@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe Menu, type: :model do
   describe 'Menu model' do
     @user = User.create(first_name: 'Admin', last_name: 'Admin', email: 'admin@admin.com', password: 'admin123')
-    subject { Menu.new(admin_id: @user, name: 'Flour', category: 'vegetarian', price: 20, description: 'A vegeterian dish', image: "https://testimage.com") }
+    subject do
+      Menu.new(admin_id: @user, name: 'Flour', category: 'vegetarian', price: 20, description: 'A vegeterian dish',
+               image: 'https://testimage.com')
+    end
     before { subject.save }
 
     it 'should check if the name is not blank' do
