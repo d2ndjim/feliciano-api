@@ -21,6 +21,19 @@ class MenusController < ApplicationController
     end
   end
 
+  def destroy
+    if admin?
+      @menu = current_user.menus.find(params[:id])
+      if @menu.destroy
+        render json: { message: 'menu deleted' }, status: :ok
+      else
+        render json: { error: 'menu not deleted' }, status: :unprocessable_entity
+      end
+    else
+      render json: { error: 'Not an Admin' }, status: :unauthorized
+    end
+  end
+
   def vegetarian
     @vegetarian = Menu.where(category: "Vegetarian")
     render json: @vegetarian, status: :ok

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "/authorized", to: "sessions#show"
 
   #admin routes
-  
+  delete "admin/menu" => "menus#destroy"
   #users routes
   get "/vegetarian" => "menus#vegetarian"
   get "/non_vegetarian" => "menus#non_vegetarian"
