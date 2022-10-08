@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   get "/authorized", to: "sessions#show"
 
   #admin routes
-  # get "admin/menus" => "menus#index"
+  
   #users routes
+  get "/vegetarian" => "menus#vegetarian"
+  get "/non_vegetarian" => "menus#non_vegetarian"
+  get "/desserts" => "menus#dessert"
+  get "/drinks" => "menus#drink"
+  get "/wines" => "menus#wine"
 end
