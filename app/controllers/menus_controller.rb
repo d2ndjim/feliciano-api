@@ -1,5 +1,5 @@
 class MenusController < ApplicationController
-  def index 
+  def index
     if admin?
       @menus = Menu.all
       render json: @menus, status: :ok
@@ -12,7 +12,7 @@ class MenusController < ApplicationController
     if admin?
       @menu = current_user.menus.new(menu_params)
       if @menu.save
-      render json: { message: 'menu created'}, status: :ok
+        render json: { message: 'menu created' }, status: :ok
       else
         render json: { message: 'menu not created' }, status: :unprocessable_entity
       end
@@ -35,27 +35,27 @@ class MenusController < ApplicationController
   end
 
   def vegetarian
-    @vegetarian = Menu.where(category: "Vegetarian")
+    @vegetarian = Menu.where(category: 'Vegetarian')
     render json: @vegetarian, status: :ok
   end
 
   def non_vegetarian
-    @non_vegetarian = Menu.where(category: "Non-Vegetarian")
+    @non_vegetarian = Menu.where(category: 'Non-Vegetarian')
     render json: @non_vegetarian, status: :ok
   end
 
   def dessert
-    @desserts = Menu.where(category: "Dessert")
+    @desserts = Menu.where(category: 'Dessert')
     render json: @desserts, status: :ok
   end
 
   def drink
-    @drinks = Menu.where(category: "Drinks")
+    @drinks = Menu.where(category: 'Drinks')
     render json: @drinks, status: :ok
   end
 
   def wine
-    @wines = Menu.where(category: "Wines")
+    @wines = Menu.where(category: 'Wines')
     render json: @wines, status: :ok
   end
 
