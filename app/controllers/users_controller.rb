@@ -24,7 +24,24 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    if admin?
+      @user = User.find(params[:id])
+      if @user.update(update_params)
+        render json: { message: 'user updated', status: :updated }
+      else
+        render json: { message: 'Email already exists' }, status: :unprocessable_entity
+      end
+    else
+      render json: { error: 'Not Allowed' }, status: :unauthorized
+    end
+  end
+
   private
+
+  def update_params
+    params.permit(:first_name, :last_name, :role, :email, :password)
+  end
 
   def user_params
     params.permit(:first_name, :last_name, :email, :password)
