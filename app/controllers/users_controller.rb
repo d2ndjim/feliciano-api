@@ -15,6 +15,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    if admin?
+      @users = User.where.not(id: current_user.id)
+      render json: @users, status: :ok
+    else
+      render json: { error: 'Not Allowed' }, status: :unauthorized
+    end
+  end
+
   private
 
   def user_params
