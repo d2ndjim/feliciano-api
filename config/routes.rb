@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :orders
+  resources :orders, only: [:index, :create, :destroy]
   resources :menus, only: [:index, :create]
 
   #public routes
@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   #admin routes
   delete "admin/menu" => "menus#destroy"
+  get "admin/orders" => "orders#all_orders"
   #users routes
   get "/vegetarian" => "menus#vegetarian"
   get "/non_vegetarian" => "menus#non_vegetarian"

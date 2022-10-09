@@ -36,10 +36,9 @@ class OrdersController < ApplicationController
   def all_orders
     if admin?
       @orders = Order.all.order(created_at: :desc)
-        render json: @orders , status: :unprocessable_entity
-      end
+      render json: @orders, status: :ok
     else
-      render json: { message: 'Please log in' }, status: :unauthorized
+      render json: { message: 'Not an Admin' }, status: :unauthorized
     end
   end
 
