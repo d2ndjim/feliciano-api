@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
     if logged_in?
       @order = current_user.orders.new(order_params)
       if @order.save
-          render json: { message: 'order created' }, status: :ok
+        render json: { message: 'order created' }, status: :ok
       else
         render json: { message: 'order not created' }, status: :unprocessable_entity
       end
@@ -12,8 +12,9 @@ class OrdersController < ApplicationController
     end
   end
 
-  def index 
+  def index
     return render json: { error: 'Please log in to access this page' }, status: :unauthorized unless logged_in?
+
     @orders = current_user.orders.all
     raise ActiveRecord::RecordNotFound unless @orders
 
@@ -42,9 +43,9 @@ class OrdersController < ApplicationController
     end
   end
 
-  private 
+  private
+
   def order_params
     params.permit(:menu_id, :order_date)
   end
-
 end
