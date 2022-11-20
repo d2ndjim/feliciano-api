@@ -1,11 +1,11 @@
 class OrdersController < ApplicationController
   def create
     if logged_in?
-      @order = current_user.orders.new(order_params)
-      if @order.save
-        render json: { message: 'order created' }, status: :ok
+      @already_ordered = Order.where(menu_id: order_params[:menu_id], user_id: current_user.id)
+      if @already_ordered.blank?
+        create_order
       else
-        render json: { message: 'order not created' }, status: :unprocessable_entity
+        render json: { message: 'You already made this order.' }, status: :unprocessable_entity
       end
     else
       render json: { message: 'Please log in' }, status: :unauthorized
@@ -45,7 +45,16 @@ class OrdersController < ApplicationController
 
   private
 
+  def create_order
+    @order = current_user.orders.new(order_params)
+    if @order.save
+      render json: { message: 'order created' }, status: :ok
+    else
+      render json: { message: 'order not created' }, status: :unprocessable_entity
+    end
+  end
+
   def order_params
-    params.permit(:menu_id, :order_date)
+    params.permit(:menu_id)
   end
 end

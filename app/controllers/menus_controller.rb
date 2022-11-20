@@ -34,6 +34,11 @@ class MenusController < ApplicationController
     end
   end
 
+  def home_menu
+    @menus = Menu.all.limit(6)
+    render json: @menus, status: :ok
+  end
+
   def vegetarian
     @vegetarian = Menu.where(category: 'Vegetarian')
     render json: @vegetarian, status: :ok
