@@ -15,9 +15,5 @@ Rails.application.routes.draw do
   get "admin/orders" => "orders#all_orders"
   #users routes
   get "/home_menu" => "menus#home_menu"
-  get "/vegetarian" => "menus#vegetarian"
-  get "/non_vegetarian" => "menus#non_vegetarian"
-  get "/desserts" => "menus#dessert"
-  get "/drinks" => "menus#drink"
-  get "/wines" => "menus#wine"
+  get "menus/categorized" => "menus#categorized"
 end
