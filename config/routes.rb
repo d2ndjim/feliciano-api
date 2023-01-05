@@ -2,9 +2,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :create, :destroy]
   resources :menus, only: [:index, :create]
   resources :users, only: [:index, :update, :destroy]
-
-
-
+  
   #public routes
   post "/signup", to: "users#create"
   post "/login", to: "sessions#create"
