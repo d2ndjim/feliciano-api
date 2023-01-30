@@ -44,31 +44,6 @@ class MenusController < ApplicationController
     render json: @menus, status: :ok
   end
 
-  def vegetarian
-    @vegetarian = Menu.where(category: 'Vegetarian')
-    render json: @vegetarian, status: :ok
-  end
-
-  def non_vegetarian
-    @non_vegetarian = Menu.where(category: 'Non-Vegetarian')
-    render json: @non_vegetarian, status: :ok
-  end
-
-  def dessert
-    @desserts = Menu.where(category: 'Dessert')
-    render json: @desserts, status: :ok
-  end
-
-  def drink
-    @drinks = Menu.where(category: 'Drinks')
-    render json: @drinks, status: :ok
-  end
-
-  def wine
-    @wines = Menu.where(category: 'Wines')
-    render json: @wines, status: :ok
-  end
-
   private
   
 
